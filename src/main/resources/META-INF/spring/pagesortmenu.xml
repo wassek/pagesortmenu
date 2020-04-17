@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+  
+     <bean id="gwtResources" class="org.jahia.ajax.gwt.helper.ModuleGWTResources">
+        <property name="javascriptResources">
+            <list>
+                <value>/modules/pagesortmenu/javascript/pagesortmenu.js</value>
+            </list>
+        </property>
+    </bean>
+  
+  
+    <bean id="pageSortUpAction" class="org.jahia.ajax.gwt.client.widget.toolbar.action.JSActionItem" >
+        <property name="execute" value="executePageSortUpFunction"/>
+        <property name="init" value="initPageSortUpFunction"/>
+        <property name="handleNewSelection" value="handlePageSortUpSelection"/>
+        <property name="handleNewMainNodeLoaded" value="handleNewMainNodeLoadedPageSortUp"/>
+        <property name="selectionTarget" value="main"/>
+    </bean>
+  
+    <bean id="pageSortDownAction" class="org.jahia.ajax.gwt.client.widget.toolbar.action.JSActionItem" >
+        <property name="execute" value="executePageSortDownFunction"/>
+        <property name="init" value="initPageSortDownFunction"/>
+        <property name="handleNewSelection" value="handlePageSortDownSelection"/>
+        <property name="handleNewMainNodeLoaded" value="handleNewMainNodeLoadedPageSortDown"/>
+        <property name="selectionTarget" value="main"/>
+    </bean>
+  
+  
+      <bean id="Toolbar.Item.pageSortUpAction" class="org.jahia.services.uicomponents.bean.toolbar.Item" >
+        <property name="requiredPermission" value="createPageAction"/>
+        <property name="actionItem" ref="pageSortUpAction"/>
+        <property name="titleKey" value="label.pageSortUp.menu@resources.pagesortmenu"/>
+		<property name="positionBefore" value="Toolbar.Item.EditContentRootNodeEditable"/>
+      
+        <property name="visibility">
+            <bean class="org.jahia.services.uicomponents.bean.Visibility">
+                <property name="operatingMode" value="development,production"/>
+                <property name="permission" value="createPageAction"/>
+                <property name="contextNodePath" value="$anysite"/>
+            </bean>
+        </property>      
+      
+        <property name="parent" value="pagesContextMenuAnthracite"/>
+    </bean>
+  
+     <bean id="Toolbar.Item.pageSortDownAction" class="org.jahia.services.uicomponents.bean.toolbar.Item" >
+        <property name="requiredPermission" value="createPageAction"/>
+        <property name="actionItem" ref="pageSortDownAction"/>
+        <property name="titleKey" value="label.pageSortDown.menu@resources.pagesortmenu"/>
+		<property name="positionBefore" value="Toolbar.Item.EditContentRootNodeEditable"/>
+      
+        <property name="visibility">
+            <bean class="org.jahia.services.uicomponents.bean.Visibility">
+                <property name="operatingMode" value="development,production"/>
+                <property name="permission" value="createPageAction"/>
+                <property name="contextNodePath" value="$anysite"/>
+            </bean>
+        </property>      
+      
+        <property name="parent" value="pagesContextMenuAnthracite"/>
+    </bean>
+  
+  
+</beans>
